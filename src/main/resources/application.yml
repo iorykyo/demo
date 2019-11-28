@@ -1,3 +1,4 @@
+# 服务器配置
 server:
   port: 8080
   servlet.context-path: /demo
@@ -9,11 +10,30 @@ server:
 # 数据库配置
 spring:
   datasource:
-    # cj是最新的连接驱动
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/demo?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&characterSetResults=utf8
+    # 该部分是druid连接池配置
+    type: com.alibaba.druid.pool.DruidDataSource
+    # cj是最新的连接驱动: com.mysql.cj.jdbc.Driver
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/demo?useSSL=false&serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&characterSetResults=utf8
     username: root
-    password: 
+    password: Itbu@809292
+
+    druid:
+      min-idle: 5           # 数据库连接池最小连接数
+      initial-size: 5       # 数据库初始化连接数
+      max-active: 50        # 最大连接数
+      # 打开PSCache，并且指定每个连接上PSCache的大小
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      # 验证数据库有效性语句
+      validation-query: SELECT 1 FROM DUAL
+      # 有效性超时时间
+      validation-query-timeout: 30000
+      # 连接检测
+      test-on-borrow: false
+      test-on-return: false
+      # 连接闲置一段时候检测其可用性
+      test-while-idle: true
 
   jpa:
     hibernate:

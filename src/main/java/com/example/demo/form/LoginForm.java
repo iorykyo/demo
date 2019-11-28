@@ -1,5 +1,7 @@
 package com.example.demo.form;
 
+import com.example.demo.entitys.user.User;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -27,6 +29,12 @@ public class LoginForm {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public User buildUserByUsername() {
+        User user = new User();
+        user.setUsername(this.getUsername());
+        return user;
     }
 
 }

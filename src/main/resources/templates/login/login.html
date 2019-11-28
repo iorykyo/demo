@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8">
     <title>login Page</title>
@@ -8,12 +10,12 @@
 <form action="#" th:action="@{/login}" th:object="${loginForm}" method="post">
     <table>
         <tr>
-            <td>Name:</td>
+            <td th:utext="#{login.username}"></td>
             <td><input type="text" th:field="*{username}" /></td>
             <td th:if="${#fields.hasErrors('username')}" th:errors="*{username}">username Error</td>
         </tr>
         <tr>
-            <td>Age:</td>
+            <td th:utext="#{login.password}"></td>
             <td><input type="password" th:field="*{password}" /></td>
             <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">password Error</td>
         </tr>
